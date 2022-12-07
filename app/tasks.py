@@ -1,11 +1,10 @@
-from telegram import Bot
 from datetime import datetime
 from fnmatch import fnmatch
 
+from telegram import Bot
+
+from app import huey, app, app_logger
 from n3robot import N3TelegramChat
-from app import huey
-from app import app
-from app import app_logger
 
 n3robot_bot = Bot(token=app.config.get('TELEGRAM_BOT_TOKEN'))
 
@@ -44,8 +43,7 @@ def send_message(api_id, message, branch, gitlab_project):
     if is_mute(telegram_chat):
         return
 
-
-    #TODO remake it!
+    # TODO remake it!
     is_send = True
     branch_filters = []
     for project in telegram_chat.projects:

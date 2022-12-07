@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from mongoengine import connect
 import logging
+
+from mongoengine import connect
 from telegram.ext import (Updater, CommandHandler, MessageHandler, Filters)
 
-from n3robot.commands import *
 from config import Config
+from n3robot.commands import *
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)

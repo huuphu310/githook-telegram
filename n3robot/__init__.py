@@ -1,7 +1,2 @@
-from .models import N3TelegramChat
-from .models import N3TelegramUser
-from .models import N3TelegramMessage
-from .models import N3TelegramMessagePipeline
-from .models import N3TelegramMessageBuild
-from .models import N3TelegramMessagePush
-from .models import N3TelegramMessageTagPush
+from .models import N3TelegramChat, N3TelegramUser, N3TelegramMessage, N3TelegramMessagePipeline, \
+    N3TelegramMessageBuild, N3TelegramMessagePush, N3TelegramMessageTagPush

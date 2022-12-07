@@ -4,3 +4,4 @@ venv
 .gitattributes
 .gitignore
 Makefile
+.env

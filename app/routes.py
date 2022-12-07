@@ -1,4 +1,4 @@
-from flask import (request, jsonify, render_template, abort, g)
+from flask import (request, jsonify, render_template, abort)
 
 from app import app, gitlab_hook_map, emoji_map, tasks
 

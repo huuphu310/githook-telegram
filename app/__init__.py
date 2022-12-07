@@ -1,10 +1,10 @@
-from flask import Flask
-from config import Config
-from huey import RedisHuey
-from mongoengine import connect
-from emoji import emojize
 import logging
 
+from flask import Flask
+from huey import RedisHuey
+from mongoengine import connect
+
+from config import Config
 from n3robot import (N3TelegramMessagePipeline, N3TelegramMessagePush, N3TelegramMessageBuild, N3TelegramMessageTagPush)
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -32,14 +32,14 @@ gitlab_hook_map = {
 }
 
 emoji_map = {
-    'success_emoji': emojize(':white_check_mark:', use_aliases=True),
-    'running_emoji': emojize(':man_running:', use_aliases=True),
-    'failed_emoji': emojize(':x:', use_aliases=True),
-    'canceled_emoji': emojize(':heavy_minus_sign:', use_aliases=True),
-    'skipped_emoji': emojize(':heavy_multiplication_x:', use_aliases=True),
-    'commit_emoji': emojize(':pencil:', use_aliases=True),
-    'created_emoji': emojize(':bulb:', use_aliases=True),
-    'tag_emoji': emojize(':link:', use_aliases=True),
+    'success_emoji': '✅',
+    'running_emoji': '🏃‍',
+    'failed_emoji': '😱',
+    'canceled_emoji': '🙅‍',
+    'skipped_emoji': '😢',
+    'commit_emoji': '🤝',
+    'created_emoji': '💩',
+    'tag_emoji': '➕',
 }
 
 from app import routes

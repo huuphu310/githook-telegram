@@ -1,6 +1,7 @@
-from n3robot import N3TelegramUser, N3TelegramChat
 from telegram import ChatAction
+
 from config import Config
+from n3robot import N3TelegramUser, N3TelegramChat
 from .manage_chat import register
 
 

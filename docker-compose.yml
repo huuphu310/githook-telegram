@@ -1,0 +1,74 @@
+version: '3.7'
+services:
+  bot:
+    image: hub.saobang.vn/nexttech/githook
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
+      - MONGODB_HOST=${MONGODB_HOST}
+      - MONGODB_USER=${MONGODB_USER}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - PROJECT_URL=${PROJECT_URL}
+    command: bash -c "python -m n3robot" 2>&1
+    networks:
+      - githook
+    depends_on:
+      - mongo
+  api:
+    image: hub.saobang.vn/nexttech/githook
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
+      - MONGODB_HOST=${MONGODB_HOST}
+      - MONGODB_USER=${MONGODB_USER}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - PROJECT_URL=${PROJECT_URL}
+      - FLASK_APP=${FLASK_APP}
+      - REDIS_HOST=${REDIS_HOST}
+    ports:
+      - '8088:5000'
+    command: bash -c "python -m flask run --host 0.0.0.0" 2>&1
+    networks:
+      - githook
+    depends_on:
+      - mongo
+      - redis
+  huey:
+    image: hub.saobang.vn/nexttech/githook
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - MONGODB_DATABASE=${MONGODB_DATABASE}
+      - MONGODB_HOST=${MONGODB_HOST}
+      - MONGODB_USER=${MONGODB_USER}
+      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - PROJECT_URL=${PROJECT_URL}
+      - REDIS_HOST=${REDIS_HOST}
+    command: bash -c "huey_consumer.py api.huey" 2>&1
+    networks:
+      - githook
+    depends_on:
+      - mongo
+      - redis
+  mongo:
+    image: 'mongo'
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_PASSWORD}
+    volumes:
+      - ./db:/data/db
+    ports:
+      - '27017:27017'
+    restart: always
+    networks:
+      - githook
+
+  redis:
+    image: 'redis'
+    container_name: redis
+    restart: always
+    networks:
+      - githook
+networks:
+  githook:
+    name: gitook

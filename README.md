@@ -9,8 +9,8 @@ Bot by manage notifications from GitLab.
 - Add your bot to chat
 - send command /register
 
-It will be created a document in a collection telegram_chats. After you can send /geturl and will be return URL which you have to paste to part Integration in settings your project.
-
+It will be created a document in a collection telegram_chats. After you can send /geturl and will be return URL which
+you have to paste to part Integration in settings your project.
 
 ## Bot commands
 

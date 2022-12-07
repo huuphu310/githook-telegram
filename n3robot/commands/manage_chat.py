@@ -1,13 +1,14 @@
-from datetime import datetime, timedelta
-from jinja2 import Template
+import logging
 import random
 import string
+from datetime import datetime, timedelta
+
+from jinja2 import Template
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import (CommandHandler, MessageHandler, Filters, ConversationHandler)
-import logging
 
-from n3robot import N3TelegramChat
 from config import Config
+from n3robot import N3TelegramChat
 
 SILENT = range(1)
 MUTE = range(1)

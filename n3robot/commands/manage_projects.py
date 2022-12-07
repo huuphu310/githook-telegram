@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
+from ast import literal_eval
+
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import (CommandHandler, CallbackQueryHandler, ConversationHandler,
                           MessageHandler, Filters)
-from ast import literal_eval
 
 from n3robot import N3TelegramChat
 
@@ -100,7 +101,6 @@ def edit_list_branches(update, context):
 
 
 def save_branches(update, context):
-
     ud = context.user_data
     project_meta = literal_eval(ud[CURRENT_PROJECT])
     telegram_chat = N3TelegramChat.objects.get(chat_id=str(update.effective_chat.id))
